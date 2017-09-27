@@ -29,14 +29,14 @@ install:
 - tree
 
 
-scripts:
+#scripts:
 
-# deploy:
-#   provider: releases
-#   api_key: $GITHUB_TOKEN
-#   file_glob: true
-#   file: directory/*
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file_glob: true
+  file: build/bin/*
 #   file: "FILE TO UPLOAD"
-#   skip_cleanup: true
+  skip_cleanup: true
 #   on:
 #     tags: true
