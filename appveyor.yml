@@ -10,7 +10,7 @@ environment:
       # BONJOUR_SDK_HOME: 'C:\\Program Files\\Bonjour SDK'
     - CMAKE_BUILD_TYPE: Release
       PYTHON: "C:\\Python35"
-      SYNERGY_TAG: 1.9
+      SYNERGY_TAG: v1.9
       
       # PYTHON: C:\Python27-x64
 
