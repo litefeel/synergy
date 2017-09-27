@@ -1,0 +1,68 @@
+version: 1.0.{build}
+
+# image: Visual C++ 2010 Express
+
+# - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2010
+environment:
+  matrix:
+    # - QMAKESPEC: C:\Qt\5.6\mingw49_32\mkspecs\win32-g++
+      # QT: mingw492_32
+      # BONJOUR_SDK_HOME: 'C:\\Program Files\\Bonjour SDK'
+    - CMAKE_BUILD_TYPE: Release
+      PYTHON: "C:\\Python35"
+      SYNERGY_TAG: 1.9
+      
+      # PYTHON: C:\Python27-x64
+
+
+init:
+  #- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - set PATH=C:\Qt\5.6\%QT%\bin;C:\Qt\Tools\%QT%\bin;%PATH%
+
+install:
+  # download synergy core zip
+  - "%PYTHON%\\python.exe download.py %SYNERGY_TAG%"
+  - ""
+  # - curl -fsS -o synergy-core.zip https://codeload.github.com/litefeel/synergy-core/zip/%SYNERGY_TAG%
+  # - appveyor DownloadFile https://www.samuelattard.com/files/bonjourcore2.msi
+  # - msiexec /i bonjourcore2.msi /qn
+  # - del bonjourcore2.msi
+  # - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
+  # - bonjoursdksetup.exe /quiet
+  # - del bonjoursdksetup.exe
+  - mkdir build
+  - cd build
+  - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+  - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=%CMAKE_BUILD_TYPE% ../synergy-core
+  - msbuild synergy-core.sln /p:Platform="x64" /p:Configuration=%CMAKE_BUILD_TYPE% /m
+  - tree
+  - 7z a myapp.zip *
+
+build: false
+
+artifacts:
+  - path: build/myapp.zip
+    name: MyApp
+
+
+deploy:
+  release: myproduct-v$(appveyor_build_version)
+  description: 'Release description'
+  provider: GitHub
+  auth_token:
+    secure: FNEEiALZoozE4KqNzQyIXYhSfOd71P2sQioP8T2VaR1r65DVZ52ZjnLR4WdIBA4W
+  artifact: /.*\.zip/            # upload all NuGet packages to release assets
+  
+  draft: true
+  prerelease: true
+  on:
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: false        # deploy on tag push only
+#  artifacts:
+#    - path: myapp.zip
+#      name: MyApp
+
+
+
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
