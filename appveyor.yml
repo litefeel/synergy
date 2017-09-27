@@ -40,7 +40,9 @@ build: false
 
 artifacts:
   - path: build/myapp.zip
-    name: MyApp
+    # name: MyApp
+  - path: build/bin/Release/*.exe
+    # name: MyApp
 
 
 deploy:
@@ -50,7 +52,7 @@ deploy:
   auth_token:
     secure: FNEEiALZoozE4KqNzQyIXYhSfOd71P2sQioP8T2VaR1r65DVZ52ZjnLR4WdIBA4W
   # artifact: /.*\.zip/            # upload all NuGet packages to release assets
-  artifact: /bin/Release/.*\.exe/            # upload all NuGet packages to release assets
+  # artifact: /bin/Release/.*\.exe/            # upload all NuGet packages to release assets
   
   draft: true
   prerelease: true
