@@ -1,3 +1,8 @@
+language: python
+python:
+- 3.5
+
+
 os: osx
 
 env:
@@ -11,7 +16,7 @@ before_install:
 
 install:
 - brew install python3
-- ln -s /usr/bin/python3 /usr/local/bin/python3
+- ln -s /usr/local/bin/python3 /usr/bin/python3
 # - brew install cmake
 - brew install qt
 - brew install openssh
@@ -26,3 +31,11 @@ install:
 
 scripts:
 
+# deploy:
+#   provider: releases
+#   api_key:
+#     secure: "GITHUB OAUTH TOKEN"
+#   file: "FILE TO UPLOAD"
+#   skip_cleanup: true
+#   on:
+#     tags: true
