@@ -17,7 +17,7 @@ before_install:
 install:
 - brew install python3
 # - sudo ln -s /usr/local/bin/python3 /usr/bin/python3
-# - brew install cmake
+- brew install cmake
 - brew install qt
 - brew install openssh
 - brew install tree
