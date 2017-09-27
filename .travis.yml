@@ -1,0 +1,28 @@
+os: osx
+
+env:
+  - SYNERGY_TAG=v1.9
+
+
+before_install:
+- brew update
+- brew outdated xctool || brew upgrade xctool
+
+
+install:
+- brew install python3
+- ln -s /usr/bin/python3 /usr/local/bin/python3
+# - brew install cmake
+- brew install qt
+- brew install openssh
+- brew install tree
+- python3 download.py %SYNERGY_TAG%"
+- mkdir build
+- cd build
+- cmake -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 -DCMAKE_OSX_ARCHITECTURES=x86_64 ../synergy-core
+- make
+- tree
+
+
+scripts:
+
