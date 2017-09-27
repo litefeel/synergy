@@ -21,7 +21,7 @@ install:
 - brew install qt
 - brew install openssh
 - brew install tree
-- python3 download.py %SYNERGY_TAG%"
+- python3 download.py $SYNERGY_TAG
 - mkdir build
 - cd build
 - cmake -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 -DCMAKE_OSX_ARCHITECTURES=x86_64 ../synergy-core
@@ -33,8 +33,9 @@ scripts:
 
 # deploy:
 #   provider: releases
-#   api_key:
-#     secure: "GITHUB OAUTH TOKEN"
+#   api_key: $GITHUB_TOKEN
+#   file_glob: true
+#   file: directory/*
 #   file: "FILE TO UPLOAD"
 #   skip_cleanup: true
 #   on:
