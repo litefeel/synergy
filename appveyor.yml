@@ -34,6 +34,7 @@ install:
   - cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=%CMAKE_BUILD_TYPE% ../synergy-core
   - msbuild synergy-core.sln /p:Platform="x64" /p:Configuration=%CMAKE_BUILD_TYPE% /m
   - tree
+  - cd ..
   - 7z a myapp.zip *
 
 build: false
