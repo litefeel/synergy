@@ -31,5 +31,5 @@ if __name__ == '__main__':
         print("download.py <tagname>", file=sys.stderr)
         sys.exit(1)
     print(sys.argv)
-    # download(sys.argv[1])
+    download(sys.argv[1])
     unzip(sys.argv[1])
