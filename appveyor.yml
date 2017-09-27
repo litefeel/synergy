@@ -40,7 +40,7 @@ install:
 build: false
 
 artifacts:
-  - path: build/myapp.zip
+  - path: myapp.zip
     # name: MyApp
   - path: build/bin/Release/*.exe
     # name: MyApp
