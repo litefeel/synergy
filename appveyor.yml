@@ -5,10 +5,10 @@ version: 1.0.{build}
 # - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2010
 environment:
   matrix:
-    # - QMAKESPEC: C:\Qt\5.6\mingw49_32\mkspecs\win32-g++
-      # QT: mingw492_32
-      # BONJOUR_SDK_HOME: 'C:\\Program Files\\Bonjour SDK'
-    - CMAKE_BUILD_TYPE: Release
+    - QMAKESPEC: C:\Qt\5.6\mingw49_32\mkspecs\win32-g++
+      QT: mingw492_32
+      BONJOUR_SDK_HOME: 'C:\\Program Files\\Bonjour SDK'
+      CMAKE_BUILD_TYPE: Release
       PYTHON: "C:\\Python35"
       SYNERGY_TAG: v1.9
       
@@ -16,20 +16,18 @@ environment:
 
 
 init:
-  #- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - set PATH=C:\Qt\5.6\%QT%\bin;C:\Qt\Tools\%QT%\bin;%PATH%
 
 install:
   # download synergy core zip
   - "%PYTHON%\\python.exe download.py %SYNERGY_TAG%"
-  - ""
   # - curl -fsS -o synergy-core.zip https://codeload.github.com/litefeel/synergy-core/zip/%SYNERGY_TAG%
-  # - appveyor DownloadFile https://www.samuelattard.com/files/bonjourcore2.msi
-  # - msiexec /i bonjourcore2.msi /qn
-  # - del bonjourcore2.msi
-  # - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
-  # - bonjoursdksetup.exe /quiet
-  # - del bonjoursdksetup.exe
+  - appveyor DownloadFile https://www.samuelattard.com/files/bonjourcore2.msi
+  - msiexec /i bonjourcore2.msi /qn
+  - del bonjourcore2.msi
+  - appveyor DownloadFile https://www.samuelattard.com/files/bonjoursdksetup.exe
+  - bonjoursdksetup.exe /quiet
+  - del bonjoursdksetup.exe
   - mkdir build
   - cd build
   - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
