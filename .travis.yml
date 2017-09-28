@@ -29,7 +29,8 @@ install:
 - tree
 
 
-#scripts:
+scripts:
+- echo ok
 
 deploy:
   provider: releases
