@@ -29,7 +29,7 @@ install:
 - tree
 
 
-scripts:
+script:
 - echo ok
 
 deploy:
