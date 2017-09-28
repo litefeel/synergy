@@ -20,8 +20,8 @@ install:
 # - sudo ln -s /usr/local/bin/python3 /usr/bin/python3
 - brew install cmake
 - brew install qt
-- brew install openssh
-- brew install tree
+# - brew install openssh
+# - brew install tree
 - python3 download.py $SYNERGY_TAG
 - mkdir build
 - cd build
