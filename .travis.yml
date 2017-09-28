@@ -39,5 +39,6 @@ deploy:
   file: build/bin/*
 #   file: "FILE TO UPLOAD"
   skip_cleanup: true
-#   on:
-#     tags: true
+  overwrite: true
+  on:
+    tags: false
