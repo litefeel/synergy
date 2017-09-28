@@ -27,6 +27,7 @@ install:
 - cmake -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk -DCMAKE_OSX_DEPLOYMENT_TARGET=10.12 -DCMAKE_OSX_ARCHITECTURES=x86_64 ../synergy-core
 - make
 - tree
+- ls -lha bin
 
 
 script:
