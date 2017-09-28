@@ -31,13 +31,14 @@ install:
 
 
 script:
-- echo ok
+- pwd
+- ls -lha .
 
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   file_glob: true
-  file: build/bin/*
+  file: bin/*
 #   file: "FILE TO UPLOAD"
   skip_cleanup: true
   overwrite: true
