@@ -35,13 +35,16 @@ install:
   - msbuild synergy-core.sln /p:Platform="x64" /p:Configuration=%CMAKE_BUILD_TYPE% /m
   # - tree
   - 7z a myapp.zip *
+  - XCOPY /Q /Y ..\synergy-core\ext\openssl\windows\x64\bin\*.dll bin\Release\
+  - 7z a win_x64.zip ./bin/Release/*
 
 build: false
 
 artifacts:
   - path: build/myapp.zip
     # name: MyApp
-  - path: build/bin/Release/*.exe
+  - path: build/win_x64.zip
+  # - path: build/bin/Release/*.exe
     # name: MyApp
 
 
